@@ -26,7 +26,6 @@ requirements:
     - jaraco.functools
     - jaraco.context
     - jaraco.collections
-    - jaraco.text  # [s390x]
 
 test:
   imports:
