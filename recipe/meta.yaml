@@ -1,27 +1,28 @@
 {% set name = "jaraco.test" %}
-{% set version = "5.4.0" %}
+{% set version = "5.5.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/jaraco.test-{{ version }}.tar.gz
-  sha256: dbd343878758adc54447d6115c461789adb31fc4073b212950243093ba317ec2
+  url: https://github.com/jaraco/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: ea799b0a149769a71ab8edd07db8ce72b2a5f34b85d8406e20c8f70df1c51f9d
 
 build:
-  noarch: python
+  skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
   host:
-    - python >=3.8
-    - setuptools >=56
-    - setuptools-scm >=3.4.1
+    - python
+    - setuptools
+    - toml
     - pip
+    - wheel
   run:
-    - python >=3.8
+    - python
     - jaraco.functools
     - jaraco.context
     - jaraco.collections
@@ -37,8 +38,12 @@ test:
 about:
   home: https://github.com/jaraco/jaraco.test
   summary: Testing support by jaraco
+  description: This package provides functions and fixtures for facilitating tests.
   license: MIT
   license_file: LICENSE
+  license_family: MIT
+  doc_url: https://github.com/jaraco/jaraco.test
+  dev_url: https://github.com/jaraco/jaraco.test
 
 extra:
   recipe-maintainers:
